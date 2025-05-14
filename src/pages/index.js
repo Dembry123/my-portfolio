@@ -1,128 +1,173 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import * as React from "react";
+import { useRef } from "react";
+import "../styles/global.css";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import * as styles from "../components/index.module.css"
+const IndexPage = () => {
+  const homeRef = useRef(null);
+  const aboutRef = useRef(null);
+  const projectsRef = useRef(null);
+  const experienceRef = useRef(null);
+  const contactRef = useRef(null);
 
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-  },
-  {
-    text: "Examples",
-    url: "https://github.com/gatsbyjs/gatsby/tree/master/examples",
-    description:
-      "A collection of websites ranging from very basic to complex/complete that illustrate how to accomplish specific tasks within your Gatsby sites.",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Learn how to add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-  },
-]
+  const scrollToSection = (ref) => {
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  };
 
-const samplePageLinks = [
-  {
-    text: "Page 2",
-    url: "page-2",
-    badge: false,
-    description:
-      "A simple example of linking to another page within a Gatsby site",
-  },
-  { text: "TypeScript", url: "using-typescript" },
-  { text: "Server Side Rendering", url: "using-ssr" },
-  { text: "Deferred Static Generation", url: "using-dsg" },
-]
+  return (
+    <main>
+      <nav className="fixed top-0 left-0 w-full bg-white shadow-md p-4 z-10">
+        <ul className="flex justify-center gap-8">
+          <li>
+            <button
+              onClick={() => scrollToSection(homeRef)}
+              className="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Home
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => scrollToSection(aboutRef)}
+              className="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              About
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => scrollToSection(projectsRef)}
+              className="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Projects
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => scrollToSection(experienceRef)}
+              className="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Experience
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => scrollToSection(contactRef)}
+              className="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Contact
+            </button>
+          </li>
+        </ul>
+      </nav>
 
-const moreLinks = [
-  { text: "Join us on Discord", url: "https://gatsby.dev/discord" },
-  {
-    text: "Documentation",
-    url: "https://gatsbyjs.com/docs/",
-  },
-  {
-    text: "Starters",
-    url: "https://gatsbyjs.com/starters/",
-  },
-  {
-    text: "Showcase",
-    url: "https://gatsbyjs.com/showcase/",
-  },
-  {
-    text: "Contributing",
-    url: "https://www.gatsbyjs.com/contributing/",
-  },
-  { text: "Issues", url: "https://github.com/gatsbyjs/gatsby/issues" },
-]
+      <section ref={homeRef} className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 to-white">
+        <div className="text-center max-w-3xl px-4">
+          <h1 className="text-5xl font-bold text-gray-800">Hi, I'm Dylan Embry</h1>
+          <p className="mt-4 text-xl text-gray-600">Software Engineer</p>
+          <div className="mt-6 flex justify-center gap-4">
+            <a
+              href="https://github.com/Dembry123"
+              className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dylan-embry-87a0b9212/"
+              className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="/DylanEmbryResume.docx.pdf"
+              download
+              className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </section>
 
-const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
+      <section ref={aboutRef} className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="max-w-3xl px-4">
+          <h2 className="text-4xl font-bold text-gray-800 text-center">About Me</h2>
+          <p className="mt-6 text-lg text-gray-600">Hi, I'm Dylan Embry, a Computer 
+            Science graduate from Southern Methodist University (BA, 2024) with a 
+            passion for building innovative software solutions. With experience as 
+            a Full Stack Software Development Intern at zdSCADA and a Software Engineering
+             Intern at TickerTrends, I’ve worked on projects ranging from optimizing oil well 
+             data platforms to developing sentiment analysis tools for financial social media. 
+             My technical expertise spans Python, React, Vue, .NET C++, and more, with 
+             a focus on creating scalable, user-friendly applications. I’ve built AI-driven Connect 
+             4 agents, a heartbeat detection iOS app using computer vision, and a doctor/patient 
+             management platform. As Theta Tau’s Philanthropy Chair, I’ve organized community events 
+             like White Rock Lake cleanups. I’m driven by problem-solving and creating tech that makes 
+             a difference. Let’s connect!
 
-const IndexPage = () => (
-  <Layout>
-    <div className={styles.textCenter}>
-      <StaticImage
-        src="../images/example.png"
-        loading="eager"
-        width={64}
-        quality={95}
-        formats={["auto", "webp", "avif"]}
-        alt=""
-        style={{ marginBottom: `var(--space-3)` }}
-      />
-      <h1>
-        Welcome to <b>Gatsby!</b>
-      </h1>
-      <p className={styles.intro}>
-        <b>Example pages:</b>{" "}
-        {samplePageLinks.map((link, i) => (
-          <React.Fragment key={link.url}>
-            <Link to={link.url}>{link.text}</Link>
-            {i !== samplePageLinks.length - 1 && <> · </>}
-          </React.Fragment>
-        ))}
-        <br />
-        Edit <code>src/pages/index.js</code> to update this page.
-      </p>
-    </div>
-    <ul className={styles.list}>
-      {links.map(link => (
-        <li key={link.url} className={styles.listItem}>
+</p>
+        </div>
+      </section>
+
+      <section ref={projectsRef} className="min-h-screen flex items-center justify-center bg-white">
+        <div className="max-w-3xl px-4">
+          <h2 className="text-4xl font-bold text-gray-800 text-center">Projects</h2>
+          <div className="mt-6 space-y-8">
+            <div>
+              <h3 className="text-2xl font-semibold text-gray-800">[Project 1]</h3>
+              <p className="mt-2 text-gray-600">[Description]</p>
+              <a
+                href="[Link]"
+                className="mt-2 inline-block text-blue-600 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Project
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section ref={experienceRef} className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="max-w-3xl px-4">
+          <h2 className="text-4xl font-bold text-gray-800 text-center">Experience</h2>
+          <div className="mt-6 space-y-8">
+            <div>
+              <h3 className="text-2xl font-semibold text-gray-800">[Job Title]</h3>
+              <p className="text-gray-500">[Company | Dates]</p>
+              <p className="mt-2 text-gray-600">[Description]</p>
+            </div>
+          </div>
           <a
-            className={styles.listItemLink}
-            href={`${link.url}${utmParameters}`}
+            href="/resume.pdf"
+            download
+            className="mt-6 inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            {link.text} ↗
+            Download Resume
           </a>
-          <p className={styles.listItemDescription}>{link.description}</p>
-        </li>
-      ))}
-    </ul>
-    {moreLinks.map((link, i) => (
-      <React.Fragment key={link.url}>
-        <a href={`${link.url}${utmParameters}`}>{link.text}</a>
-        {i !== moreLinks.length - 1 && <> · </>}
-      </React.Fragment>
-    ))}
-  </Layout>
-)
+        </div>
+      </section>
 
-/**
- * Head export to define metadata for the page
- *
- * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
- */
-export const Head = () => <Seo title="Home" />
+      <section ref={contactRef} className="min-h-screen flex items-center justify-center bg-white">
+        <div className="max-w-3xl px-4 text-center">
+          <h2 className="text-4xl font-bold text-gray-800">Contact</h2>
+          <p className="mt-6 text-lg text-gray-600">[Your contact info]</p>
+        </div>
+      </section>
+    </main>
+  );
+};
 
-export default IndexPage
+export const Head = () => (
+  <>
+    <title>My Portfolio</title>
+    <meta name="description" content="Personal portfolio of [Your Name]" />
+    <link href="/styles.css" rel="stylesheet" />
+  </>
+);
+
+export default IndexPage;
