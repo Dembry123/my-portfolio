@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "gatsby": "^5.14.1",
+    "gatsby": "^5.14.3",
     "gatsby-plugin-image": "^3.14.0",
     "gatsby-plugin-manifest": "^5.14.0",
     "gatsby-plugin-sharp": "^5.14.0",
@@ -41,5 +41,9 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "resolutions": {
+    "react": "0.0.0-experimental-c8b778b7f-20220825",
+    "react-dom": "0.0.0-experimental-c8b778b7f-20220825"
   }
 }
