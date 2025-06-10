@@ -6,7 +6,7 @@ import experienceImage from "../images/IMG_3222.jpg";
 
 const IndexPage = () => {
   const homeRef = useRef(null);
-  const aboutRef = useRef(null);
+  //const aboutRef = useRef(null);
   // const projectsRef = useRef(null);
   const experienceRef = useRef(null);
   const contactRef = useRef(null);
@@ -167,7 +167,7 @@ const IndexPage = () => {
               Home
             </button>
           </li>
-          <li>
+          {/*<li>
             <button
               onClick={() => scrollToSection(aboutRef)}
               className="text-blue-600 hover:text-blue-800 font-medium"
@@ -175,6 +175,7 @@ const IndexPage = () => {
               About
             </button>
           </li>
+          */}
           {/* <li>
             <button
               onClick={() => scrollToSection(projectsRef)}
