@@ -10,6 +10,17 @@ const IndexPage = () => {
   // const projectsRef = useRef(null);
   const experienceRef = useRef(null);
   const contactRef = useRef(null);
+  const breakpoint = 768; // Define the breakpoint (e.g., 768px for mobile)
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+
+  // Track window resize
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // State for typing animation
   const [headingText, setHeadingText] = useState("");
@@ -191,50 +202,74 @@ const IndexPage = () => {
       </nav>
 
       <section ref={homeRef} className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 to-white">
-        <div className="flex w-full max-w-5xl px-4 items-center">
-          <div className="w-1/2 flex flex-col justify-center items-center">
-            <h1 className="text-5xl font-bold text-gray-800 inline-block">
-              {headingText}
-            </h1>
-            <div className="mt-6 flex justify-center gap-4">
-              <a
-                href="https://github.com/Dembry123"
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/dylan-embry-87a0b9212/"
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="/DylanEmbryResume.pdf"
-                download
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Download Resume
-              </a>
+        <div className="w-full max-w-5xl px-4">
+          {windowWidth > breakpoint ? (
+            // Side-by-side layout for larger screens
+            <div className="flex items-center">
+              <div className="w-1/2 flex flex-col justify-center items-center">
+                <h1 className="text-5xl font-bold text-gray-800 inline-block">
+                  {headingText}
+                </h1>
+                <div className="mt-6 flex justify-center gap-4">
+                  <a href="https://github.com/Dembry123" className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                  </a>
+                  <a href="https://www.linkedin.com/in/dylan-embry-87a0b9212/" className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                  <a href="/DylanEmbryResume.pdf" download className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    Download Resume
+                  </a>
+                </div>
+              </div>
+              <div className="w-1/2 flex justify-center items-center home-image-container">
+                <img
+                  src={profileImage}
+                  alt="Profile"
+                  className="max-w-full h-auto rounded-lg shadow-lg home-image"
+                  style={{
+                    opacity: homeImageOpacity,
+                    transition: "opacity 1s ease-in-out, transform 0.1s ease-out",
+                    transform: `perspective(1000px) rotateX(${homeImageRotation.x}deg) rotateY(${homeImageRotation.y}deg)`,
+                    maxHeight: "80vh",
+                  }}
+                />
+              </div>
             </div>
-          </div>
-          <div className="w-1/2 flex justify-center items-center home-image-container">
-            <img
-              src={profileImage}
-              alt="Profile"
-              className="max-w-full h-auto rounded-lg shadow-lg home-image"
-              style={{
-                opacity: homeImageOpacity,
-                transition: "opacity 1s ease-in-out, transform 0.1s ease-out",
-                transform: `perspective(1000px) rotateX(${homeImageRotation.x}deg) rotateY(${homeImageRotation.y}deg)`,
-                maxHeight: "80vh",
-              }}
-            />
-          </div>
+          ) : (
+            // Stacked layout for smaller screens
+            <div className="flex flex-col items-center">
+              <div className="flex flex-col justify-center items-center">
+                <h1 className="text-5xl font-bold text-gray-800 inline-block text-center">
+                  {headingText}
+                </h1>
+                <div className="mt-6 flex justify-center gap-4">
+                  <a href="https://github.com/Dembry123" className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                  </a>
+                  <a href="https://www.linkedin.com/in/dylan-embry-87a0b9212/" className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                  <a href="/DylanEmbryResume.pdf" download className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    Download Resume
+                  </a>
+                </div>
+              </div>
+              <div className="mt-6 flex justify-center items-center home-image-container">
+                <img
+                  src={profileImage}
+                  alt="Profile"
+                  className="max-w-full h-auto rounded-lg shadow-lg home-image"
+                  style={{
+                    opacity: homeImageOpacity,
+                    transition: "opacity 1s ease-in-out, transform 0.1s ease-out",
+                    transform: `perspective(1000px) rotateX(${homeImageRotation.x}deg) rotateY(${homeImageRotation.y}deg)`,
+                    maxWidth: "90%",
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -259,52 +294,104 @@ const IndexPage = () => {
       </section> */}
 
       <section ref={experienceRef} className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="flex w-full max-w-5xl px-4 items-center">
-          <div className="w-1/2 flex justify-center items-center experience-image-container">
-            <img
-              src={experienceImage}
-              alt="Experience"
-              className="max-w-full h-auto rounded-lg shadow-lg experience-image"
-              style={{
-                opacity: experienceImageOpacity,
-                transition: "opacity 1s ease-in-out, transform 0.1s ease-out",
-                transform: `perspective(1000px) rotateX(${experienceImageRotation.x}deg) rotateY(${experienceImageRotation.y}deg)`,
-                maxHeight: "80vh",
-              }}
-            />
-          </div>
-          <div className="w-1/2 px-4">
-            <h2 className="text-4xl font-bold text-gray-800 text-center">Experience</h2>
-            <div className="mt-6 space-y-8">
-              <div>
-                <h3 className="text-2xl font-semibold text-gray-800">Full Stack Software Development Intern</h3>
-                <p className="text-gray-500">zdSCADA, LP | Summer 2024</p>
-                <ul className="mt-2 text-gray-600 list-disc list-inside">
-                  <li>Led the transition of over 10% of the oil well control and data acquisition platform from ASP.NET to Vue, improving the application's performance and user experience</li>
-                  <li>Implemented over 30 customer and support requested features using technologies such as Vue, WinForms, C#, Lua, T-SQL, and .NET Core with all changes deployed to production</li>
-                  <li>Enhanced team productivity by participating in a modified Scrum process, writing and testing UI tests using Playwright, and aligning on goals in weekly team meetings</li>
-                </ul>
+        <div className="w-full max-w-5xl px-4">
+          {windowWidth > breakpoint ? (
+            <div className="flex items-center">
+              <div className="w-1/2 flex justify-center items-center experience-image-container">
+                <img
+                  src={experienceImage}
+                  alt="Experience"
+                  className="max-w-full h-auto rounded-lg shadow-lg experience-image"
+                  style={{
+                    opacity: experienceImageOpacity,
+                    transition: "opacity 1s ease-in-out, transform 0.1s ease-out",
+                    transform: `perspective(1000px) rotateX(${experienceImageRotation.x}deg) rotateY(${experienceImageRotation.y}deg)`,
+                    maxHeight: "80vh",
+                  }}
+                />
               </div>
-              <div>
-                <h3 className="text-2xl font-semibold text-gray-800">Software Engineering Intern</h3>
-                <p className="text-gray-500">TickerTrends Inc. | Summer 2023</p>
-                <ul className="mt-2 text-gray-600 list-disc list-inside">
-                  <li>Developed quantitative sentiment analysis software to scrape and analyze financial social media posts using Express, Flask, and Next.js</li>
-                  <li>Leveraged Knex.js and TypeORM to manage and optimize the schema and entities of a PostgreSQL database</li>
-                  <li>Utilized React and Tailwind CSS to develop a dynamic front-end for data visualization, including interactive charts, real-time updates, and responsive dashboards using Chart.js</li>
-                </ul>
+              <div className="w-1/2 px-4">
+                <h2 className="text-4xl font-bold text-gray-800 text-center">Experience</h2>
+                <div className="mt-6 space-y-8">
+                  <div>
+                    <h3 className="text-2xl font-semibold text-gray-800">Full Stack Software Development Intern</h3>
+                    <p className="text-gray-500">zdSCADA, LP | Summer 2024</p>
+                    <ul className="mt-2 text-gray-600 list-disc list-inside">
+                      <li>Led the transition of over 10% of the oil well control and data acquisition platform from ASP.NET to Vue, improving the application's performance and user experience</li>
+                      <li>Implemented over 30 customer and support requested features using technologies such as Vue, WinForms, C#, Lua, T-SQL, and .NET Core with all changes deployed to production</li>
+                      <li>Enhanced team productivity by participating in a modified Scrum process, writing and testing UI tests using Playwright, and aligning on goals in weekly team meetings</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold text-gray-800">Software Engineering Intern</h3>
+                    <p className="text-gray-500">TickerTrends Inc. | Summer 2023</p>
+                    <ul className="mt-2 text-gray-600 list-disc list-inside">
+                      <li>Developed quantitative sentiment analysis software to scrape and analyze financial social media posts using Express, Flask, and Next.js</li>
+                      <li>Leveraged Knex.js and TypeORM to manage and optimize the schema and entities of a PostgreSQL database</li>
+                      <li>Utilized React and Tailwind CSS to develop a dynamic front-end for data visualization, including interactive charts, real-time updates, and responsive dashboards using Chart.js</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-6 flex justify-center">
+                  <a
+                    href="/resume.pdf"
+                    download
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  >
+                    Download Resume
+                  </a>
+                </div>
               </div>
             </div>
-            <div className="mt-6 flex justify-center">
-              <a
-                href="/resume.pdf"
-                download
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Download Resume
-              </a>
+          ) : (
+            <div className="flex flex-col items-center">
+              <div className="px-4">
+                <h2 className="text-4xl font-bold text-gray-800 text-center">Experience</h2>
+                <div className="mt-6 space-y-8">
+                  <div>
+                    <h3 className="text-2xl font-semibold text-gray-800">Full Stack Software Development Intern</h3>
+                    <p className="text-gray-500">zdSCADA, LP | Summer 2024</p>
+                    <ul className="mt-2 text-gray-600 list-disc list-inside">
+                      <li>Led the transition of over 10% of the oil well control and data acquisition platform from ASP.NET to Vue, improving the application's performance and user experience</li>
+                      <li>Implemented over 30 customer and support requested features using technologies such as Vue, WinForms, C#, Lua, T-SQL, and .NET Core with all changes deployed to production</li>
+                      <li>Enhanced team productivity by participating in a modified Scrum process, writing and testing UI tests using Playwright, and aligning on goals in weekly team meetings</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold text-gray-800">Software Engineering Intern</h3>
+                    <p className="text-gray-500">TickerTrends Inc. | Summer 2023</p>
+                    <ul className="mt-2 text-gray-600 list-disc list-inside">
+                      <li>Developed quantitative sentiment analysis software to scrape and analyze financial social media posts using Express, Flask, and Next.js</li>
+                      <li>Leveraged Knex.js and TypeORM to manage and optimize the schema and entities of a PostgreSQL database</li>
+                      <li>Utilized React and Tailwind CSS to develop a dynamic front-end for data visualization, including interactive charts, real-time updates, and responsive dashboards using Chart.js</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-6 flex justify-center">
+                  <a
+                    href="/resume.pdf"
+                    download
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  >
+                    Download Resume
+                  </a>
+                </div>
+              </div>
+              <div className="mt-6 flex justify-center items-center experience-image-container">
+                <img
+                  src={experienceImage}
+                  alt="Experience"
+                  className="max-w-full h-auto rounded-lg shadow-lg experience-image"
+                  style={{
+                    opacity: experienceImageOpacity,
+                    transition: "opacity 1s ease-in-out, transform 0.1s ease-out",
+                    transform: `perspective(1000px) rotateX(${experienceImageRotation.x}deg) rotateY(${experienceImageRotation.y}deg)`,
+                    maxWidth: "90%",
+                  }}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
