@@ -462,7 +462,7 @@ const IndexPage = () => {
 
 export const Head = () => (
   <>
-    <title>My Portfolio</title>
+    <title>Dylan Embry's Portfolio</title>
     <meta name="description" content="Personal portfolio of Dylan Embry" />
     <link href="/styles.css" rel="stylesheet" />
   </>
