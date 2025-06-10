@@ -12,11 +12,12 @@ const IndexPage = () => {
   const contactRef = useRef(null);
   const breakpoint = 768; // Define the breakpoint (e.g., 768px for mobile)
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(1024);
 
 
   // Track window resize
   useEffect(() => {
+    setWindowWidth(window.innerWidth);
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
